@@ -40,9 +40,7 @@ class LZ77 {
                 char currentPosChar = input.charAt(currentPosition);
                 charList.add(currentPosChar);
                 if (this.searchwindow.contains(convertArrayToString(charList))) {
-//                    charList.add(currentPosChar);
                     currentPosition++;//IGNORE THE REPEATED CHAR BUT ADD TO CHARLIST THEN MOVE TILL A NEW STRING IS OBTAINED FROM THE INPUT
-//                    System.out.println("charList"+charList);
                     if(currentPosition==input.length()){
                         String temp3 = convertArrayToString(charList);
                         String temp4 = temp3.substring(0, temp3.length() );
@@ -61,25 +59,11 @@ class LZ77 {
                     continue;
 
                 } else {
-//                    searchwindow.add(input.charAt(currentPosition));
-//                    String searchstring =convertArrayToString(searchwindow);
-//                    String charListString =convertArrayToString(charList);
-//                    System.out.println("searchwindow:"+searchstring+ " charList:" +charListString);
-//                    if(searchstring.contains(charListString)){
-//                        System.out.println("searchstring"+searchstring);
-//                        System.out.println("currentPosition"+currentPosition);
-//                        pointer=0;
-//                        howManyChar=0;
-//                        nextChar=currentPosChar;
-//                        output.add(new Triple(pointer,howManyChar,nextChar));
-//                        currentPosition++;
-//                        continue;
-//                    }\
+
                     System.out.println("searchwindow: " + this.searchwindow);
                     System.out.println("charlist: " + charList);
 
                     System.out.println("charlist string: " + convertArrayToString(charList));
-//                    System.out.println("new search window: "+this.searchwindow+convertArrayToString(charList));
                     System.out.println("currentposition: " + currentPosition);
                     String temp = convertArrayToString(charList);
                     String temp2;
@@ -88,25 +72,24 @@ class LZ77 {
                     }else{
                         temp2 = temp.substring(0, temp.length() -1);
                     }
-//                    String temp2 = temp.substring(0, temp.length() -1);
                     System.out.println("temp2: " + temp2);
 
                     int matchedSubstringIndex = this.searchwindow.indexOf(temp2);//BA5OD A2RAB MATCHING!! STRING TO THE CHARLIST(LOOK AHEAD BUFFER)
 
                     System.out.println("matchedSubstringIndex : " + matchedSubstringIndex);
-                    if (matchedSubstringIndex == -1) {//Y3NI LW MSH MWGOD FA EL POSITION BTA3I 0 IT'S A NEW CHAR
+                    if (matchedSubstringIndex == -1) {//IF NOT FOUND, THE POSITION IS 0 IT'S A NEW CHAR
                         pointer = 0;
                         howManyChar = 0;
                     } else {
                         pointer = charListStartingIndex - matchedSubstringIndex;//DIFFERENCE BETWEEN START OF CHARLIST AND NEAREST MATCHING STRING
-                        howManyChar = charList.size() - 1;//BTB2A CHARLIST MINUS 1 34AN BNO2AF 3ND AWL AND ONLY AWL NEW CHAR
+                        howManyChar = charList.size() - 1;//CHARLIST MINUS 1 AS WE STOP AT THE FIRST NEW CHAR
                     }
 
                     nextChar = charList.get(charList.size() - 1);//LAST CHAR IN CHARLIST IS THE NEW CHAR TO ADD
                     output.add(new Triple(pointer, howManyChar, nextChar));
                     charList = new ArrayList<>();//RESET FOR NEXT MATCHING STRING
                     charListStartingIndex = -1;
-                    this.searchwindow = input.substring(0, currentPosition + 1);//MN AWL EL INPUT L7D A5R EL CHARLIST B2A FL SEARCH WINDOW 5LAS M3AYA
+                    this.searchwindow = input.substring(0, currentPosition + 1);//FROM THE START OF THE INPUT TILL THE LAST CHAR IN CHARLIST IS NOW IN OUR SEARCH WINDOW
                     currentPosition++;
                 }
 
