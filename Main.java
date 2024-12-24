@@ -106,7 +106,7 @@ class LZ77 {
                     output.add(new Triple(pointer, howManyChar, nextChar));
                     charList = new ArrayList<>();//RESET FOR NEXT MATCHING STRING
                     charListStartingIndex = -1;
-                    this.searchwindow = input.substring(0, currentPosition + 1);//MN AWL EL INPUT L7D A5R EL CHARLIST B2A FL SEARCH WINDOW 5LA M3AYA
+                    this.searchwindow = input.substring(0, currentPosition + 1);//MN AWL EL INPUT L7D A5R EL CHARLIST B2A FL SEARCH WINDOW 5LAS M3AYA
                     currentPosition++;
                 }
 
@@ -158,8 +158,8 @@ class LZ77 {
     }
 
     public static void main(String[] args) {
-        String input = "ABAABABAABBBBBBBBBBBBA"; // Example input string
-        int windowSize = 50; // Define your desired window size
+        String input = "ABAABABAABBBBBBBBBBBBA";
+        int windowSize = 50; 
         String input2 = "AAABBAA";
         String input3="AABCBBABC";
         String input4="AABAAB";
